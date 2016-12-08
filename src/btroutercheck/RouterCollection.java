@@ -31,7 +31,7 @@ public class RouterCollection
          while(inputStream.hasNext()){
             
             String data = inputStream.next();			
-            String[] routerInfo = data.split(",");	//an string array that holds the values from the line in the csv
+            String[] routerInfo = data.split(",");	//a string array that holds the values from the line in the csv
                
             if(skip!=0){
 

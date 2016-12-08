@@ -14,24 +14,29 @@ import java.util.Scanner;
  *
  * @author Peter
  */
+ 
+ /*a class to read the router objects within the provided csv file and compare them
+ with the rules to show which routers need updated*/
+ 
 public class RouterCollection
 {
    ArrayList<Router> routerCollection = new ArrayList<Router>();
    
+   /* a method to load the router from the csv into an array list*/
    public void startRouterCollection(String fileName)
    {
       
       File file = new File(fileName);
       try{
          Scanner inputStream = new Scanner(file);
-         inputStream.useDelimiter("\n");
-         int index=0;
-         int skip = 0;
+         inputStream.useDelimiter("\n");	//this will make a new line a new string
+         int index=0;		//the index that the object will be stored
+         int skip = 0;		//this will skip the first line of the csv file which are the field headers
          
          while(inputStream.hasNext()){
             
-            String data = inputStream.next();
-            String[] routerInfo = data.split(",");
+            String data = inputStream.next();			
+            String[] routerInfo = data.split(",");	//an string array that holds the values from the line in the csv
                
             if(skip!=0){
 
@@ -57,6 +62,8 @@ public class RouterCollection
 
    }
    
+   
+   /* this method will allow the routers to be compared against the provided rules*/
    public void routersToBePatched(){
       
       
@@ -93,6 +100,7 @@ public class RouterCollection
       }
    }
 
+   /* this method is a test to see if a router has a matching hostname in the csv*/
    public boolean matchingHostName(Router router, int index){
       
       
@@ -108,12 +116,13 @@ public class RouterCollection
       return result; 
    }
    
+      /* this method is a test to see if a router has a matching ip address in the csv*/
    public boolean matchingIPAddress(Router router, int index){
       
       
       boolean result = false;
       
-      for(int x=0; routerCollection.size()>x;x++)
+      for(int x=0; routerCollection.size()>x;x++ )
          {
             if(routerCollection.get(x).getIpAddress().equals(router.getIpAddress())&&index!=x)
                {
@@ -122,11 +131,7 @@ public class RouterCollection
          }
       return result; 
    }
-   
-   
-   
-   
-   
+
 }
 
 
